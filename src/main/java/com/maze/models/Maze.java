@@ -3,7 +3,7 @@ package com.maze.models;
 public class Maze {
   private final int width;
   private final int height;
-  final MazeCell[][] maze;
+  private final MazeCell[][] maze;
 
   public Maze(int width, int height) {
     this.width = width;
@@ -12,10 +12,18 @@ public class Maze {
   }
 
   public int getWidth() {
-    return width;
+    return this.width;
   }
 
   public int getHeight() {
-    return height;
+    return this.height;
+  }
+
+  public MazeCell getMazeCell(int x, int y) {
+    return this.maze[x][y];
+  }
+
+  public void setMazeCell(MazeCell cell, int x, int y) {
+    this.maze[x][y] = cell;
   }
 }
