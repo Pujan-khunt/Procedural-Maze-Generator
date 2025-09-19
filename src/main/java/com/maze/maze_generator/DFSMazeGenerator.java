@@ -38,13 +38,24 @@ public class DFSMazeGenerator implements MazeGenerator {
     int[][] directions = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
 
     for (int i = 0; i < 4; i++) {
-      MazeCell neighboringCell =
-          maze.getMazeCell(cell.x + directions[i][0], cell.y + directions[i][1]);
-      boolean isVaildNeighboringCell = isValidCell(cell, mazeWidth, mazeHeight) && !isVisited(cell);
-      neighbors[i] = new Neighbor(neighboringCell, isVaildNeighboringCell);
+      int neighboringCellX = cell.x + directions[i][0];
+      int neighboringCellY = cell.y + directions[i][1];
+
+      boolean isValidNeighboringCell =
+          isValidCell(neighboringCellX, neighboringCellY, mazeWidth, mazeHeight)
+              && !isVisited(maze.getMazeCell(neighboringCellX, neighboringCellY));
+      MazeCell neighboringCell = null;
+      if (isValidNeighboringCell) {
+        neighboringCell = maze.getMazeCell(neighboringCellX, neighboringCellY);
+      }
+      neighbors[i] = new Neighbor(neighboringCell, isValidNeighboringCell);
     }
 
     return getRandomNeighbor(neighbors);
+  }
+
+  private boolean isValidCell(int cellX, int cellY, int mazeWidth, int mazeHeight) {
+    return cellX >= 0 && cellX < mazeWidth && cellY >= 0 && cellY < mazeHeight;
   }
 
   private boolean isVisited(MazeCell cell) {
@@ -78,10 +89,6 @@ public class DFSMazeGenerator implements MazeGenerator {
     }
 
     return validNeighbors.get(index);
-  }
-
-  private boolean isValidCell(MazeCell cell, int mazeWidth, int mazeHeight) {
-    return cell.x >= 0 && cell.x < mazeWidth && cell.y >= 0 && cell.y < mazeHeight;
   }
 
   private void visit(MazeCell source, MazeCell destination, Maze maze) {
@@ -139,6 +146,7 @@ public class DFSMazeGenerator implements MazeGenerator {
       if (randomValidNeighbor == null) {
         // No valid remaining neighbors, backtrack.
         backtrack.pop();
+        // initialCell = backtrack.peek();
         continue;
       }
       visit(initialCell, randomValidNeighbor, maze);

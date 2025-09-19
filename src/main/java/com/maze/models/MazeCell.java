@@ -1,8 +1,8 @@
 package com.maze.models;
 
 public class MazeCell {
-  public boolean left, right, top, bottom;
-  public boolean visited;
+  public boolean left = true, right = true, top = true, bottom = true;
+  public boolean visited = false; // All cells are unvisited on maze creation.
   public int x;
   public int y;
 
@@ -11,7 +11,6 @@ public class MazeCell {
     this.right = true;
     this.top = true;
     this.bottom = true;
-    this.visited = false; // All cells are unvisited when created.
     this.x = x;
     this.y = y;
   }

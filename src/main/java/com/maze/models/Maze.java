@@ -10,6 +10,11 @@ public class Maze {
     this.width = width;
     this.height = height;
     this.maze = new MazeCell[this.width][this.height];
+    for (int i = 0; i < this.width; i++) {
+      for (int j = 0; j < this.height; j++) {
+        this.maze[i][j] = new MazeCell(i, j);
+      }
+    }
   }
 
   public int getWidth() {
