@@ -11,5 +11,5 @@ public interface MazeGenerator {
    * @param initalCell Cell from where maze generation begins.
    * @return Fully generated maze.
    */
-  void generate(Maze maze, MazeCell initalCell);
+  void generate(Maze maze, MazeCell initialCell);
 }

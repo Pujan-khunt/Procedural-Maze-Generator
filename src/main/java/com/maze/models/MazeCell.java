@@ -6,13 +6,26 @@ public class MazeCell {
   public int x;
   public int y;
 
-  public MazeCell(boolean left, boolean right, boolean top, boolean bottom, int x, int y) {
-    this.left = left;
-    this.right = right;
-    this.top = top;
-    this.bottom = bottom;
+  public MazeCell(int x, int y) {
+    this.left = true;
+    this.right = true;
+    this.top = true;
+    this.bottom = true;
     this.visited = false; // All cells are unvisited when created.
     this.x = x;
     this.y = y;
+  }
+
+  @Override
+  public String toString() {
+    return "MazeCell [left="
+        + left
+        + ", right="
+        + right
+        + ", top="
+        + top
+        + ", bottom="
+        + bottom
+        + "]";
   }
 }

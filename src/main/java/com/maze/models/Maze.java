@@ -3,6 +3,7 @@ package com.maze.models;
 public class Maze {
   private final int width;
   private final int height;
+  private int visitedCount;
   private final MazeCell[][] maze;
 
   public Maze(int width, int height) {
@@ -25,5 +26,13 @@ public class Maze {
 
   public void setMazeCell(MazeCell cell, int x, int y) {
     this.maze[x][y] = cell;
+  }
+
+  public void setVisitedCount(int visitedCount) {
+    this.visitedCount = visitedCount;
+  }
+
+  public int getVisitedCount() {
+    return this.visitedCount;
   }
 }
